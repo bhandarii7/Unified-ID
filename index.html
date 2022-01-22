@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <header>unified -ID</header>
+    <div>
+        <section>
+            <img src="./user.png" style="width: 10vw;" alt="">
+            <button id="login-btn">Click here to store your document</button>
+        </section>
+
+        <section>
+            <img src="./user.png" style="width: 10vw;" alt="">
+            <button id="institute-login" >Login here if you're an institution</button>
+            <br>
+            Not registered?<a href="./institute/signup.html">Signup</a>
+        </section>
+    </div>
+
+    <script>
+        const serverUrl = "https://et3ubl5ljr9j.usemoralis.com:2053/server";
+        const appId = "DvZ9ilkVyRPzIbi2wn16BUPxSdi7XZM3bQ6VB1Rf";
+        Moralis.start({
+            serverUrl,
+            appId
+        });
+
+        const loginBtn = document.getElementById('login-btn');
+        const instituteLogin = document.getElementById('institute-login');
+        
+
+        async function userLogin() {
+            let user = Moralis.User.current();
+            if (!user) {
+                user = await Moralis.authenticate();
+            }
+            if (user) {
+                window.location.href = 'user.html';
+            }
+        }
+
+        
+
+        loginBtn.addEventListener('click',userLogin);
+        instituteLogin.addEventListener('click',()=>{
+            window.location.href='institute/index.html';
+        });
+    </script>
+</body>
+
+</html>

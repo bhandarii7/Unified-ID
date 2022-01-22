@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <label for="">email</label>
+    <input id="email" type="text">
+    <label for="">password</label>
+    <input type="password" name="" id="password">
+    <button id="submit-btn">login</button>
+
+    <script>
+        const serverUrl = "https://et3ubl5ljr9j.usemoralis.com:2053/server";
+        const appId = "DvZ9ilkVyRPzIbi2wn16BUPxSdi7XZM3bQ6VB1Rf";
+        Moralis.start({
+            serverUrl,
+            appId
+        });
+
+        async function handleSubmit(email,password){
+            const user = await Moralis.User.logIn(email, password);
+            if(user)
+            {
+                window.location.href='search.html';
+            }
+        }
+
+        document.getElementById("submit-btn").onclick = () => handleSubmit(document.getElementById("email").value, document
+            .getElementById("password").value);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="logout-btn">logout</button>
+    <br><br>
+
+        <input onchange=uploadImage() name="fileInput" id="fileInput" type="file">
+        <br>
+        <br>
+        <button id="submit-btn" type="submit">submit</button>
+    
+
+    <script>
+        const serverUrl = "https://et3ubl5ljr9j.usemoralis.com:2053/server";
+        const appId = "DvZ9ilkVyRPzIbi2wn16BUPxSdi7XZM3bQ6VB1Rf";
+        Moralis.start({
+            serverUrl,
+            appId
+        });
+
+        //variables
+        const fileInput = document.getElementById('fileInput');
+        const logoutBtn = document.getElementById('logout-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        
+
+        //logout function
+
+        async function logOut() {
+        await Moralis.User.logOut();
+        window.location.href='index.html';
+        console.log("logged out");
+      }
+
+    //   upload image function
+
+        async function uploadImage(e) {
+            const data = fileInput.files[0];
+            const file = new Moralis.File(data.name, data)
+            await file.saveIPFS();            
+            console.log(file.ipfs(), file.hash());
+        }
+
+
+//functions call
+        logoutBtn.addEventListener('click', logOut);
+        
+    </script>
+</body>
+
+</html>
