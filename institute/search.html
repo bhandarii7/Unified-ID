@@ -1,13 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <input placeholder="Enter hash" type="text">
-    <button>fetch data</button>
+    <input id="hash" placeholder="Enter hash" type="text">
+    <button id="fetch">fetch data</button>
+    <button id="logout" >logout</button>
+
+    <script src="../moralis.js"></script>
+    <script>
+        // variables
+        const hash = document.getElementById('hash');
+        const fetchBtn = document.getElementById('fetch');
+        let container = document.getElementById('container');
+        let logout = document.getElementById('logout');
+        
+
+
+        // fetch iamge and display
+        async function fetchIPFSDoc(ipfsHash) {
+            const url = `https://ipfs.moralis.io:2053/ipfs/${ipfsHash}`;
+            window.open(url);
+            flag = false;
+        }
+
+        // logout function
+        async function logOut() {
+        await Moralis.User.logOut();
+        window.location.href='index.html';
+        console.log("logged out");
+        }
+
+        //eventhandlers
+        fetchBtn.onclick = () => fetchIPFSDoc(hash.value);
+        logout.onclick = ()=> logOut();
+    </script>
 </body>
+
 </html>

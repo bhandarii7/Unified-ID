@@ -19,14 +19,14 @@
     <input id="password" type="password">
     <button id="signup-btn">signup</button>
 
-
+    <script src="../moralis.js"></script>
     <script>
-        const serverUrl = "https://et3ubl5ljr9j.usemoralis.com:2053/server";
-        const appId = "DvZ9ilkVyRPzIbi2wn16BUPxSdi7XZM3bQ6VB1Rf";
-        Moralis.start({
-            serverUrl,
-            appId
-        });
+        // const serverUrl = "https://et3ubl5ljr9j.usemoralis.com:2053/server";
+        // const appId = "DvZ9ilkVyRPzIbi2wn16BUPxSdi7XZM3bQ6VB1Rf";
+        // Moralis.start({
+        //     serverUrl,
+        //     appId
+        // });
 
         const signup = async (email, password) => {
             const user = new Moralis.User();
@@ -56,46 +56,5 @@
 
     </script>
 </body>
-<!-- <body>
-
-    <label for="">username:</label>
-    <input id="username" type="text">
-    <label for="">email:</label>
-    <input id="email" type="text">
-    <label for="">password:</label>
-    <input id="password" type="password">
-    <button id="signup-btn" onclick="handleSubmit()">signup</button>
-    <script>
-        const signupBtn = document.getElementById('signup-btn');
-        const username = document.getElementById('username');
-        const email = document.getElementById('email');
-        const password = document.getElementById('password');
-
-        async function handleSubmit() {
-            
-            const user = new Moralis.User();
-            user.set("username", username);
-            user.set("password", password);
-            // if ((email.indexOf('@sbi.co.in')> -1)||(email.indexOf('@icicibank.com')> -1)||(email.indexOf('@axisbank.com')> -1)||(email.indexOf('@hdfc.com')> -1)) {
-                user.set("email", email);
-            // } else {
-                // prompt("Enter valid Email");
-                // return false;
-            // }
-            // other fields can be set just like with Moralis.Object
-            // user.set("phone", "415-392-0202");
-            try {
-                await user.signUp();
-                // Hooray! Let them use the app now.
-            } catch (error) {
-                // Show the error message somewhere and let the user try again.
-                alert("Error: " + error.code + " " + error.message);
-            }
-
-            // window.location.href = './index.html'
-        }
-
-    </script>
-</body> -->
 
 </html>
